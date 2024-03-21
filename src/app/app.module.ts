@@ -10,6 +10,7 @@ import { MainContentComponent } from './components/main-content/main-content.com
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { RouterModule, Routes } from '@angular/router';
+import { RecurringEventsService } from './services/recurring-events.service';
 
 
 
@@ -28,7 +29,9 @@ import { RouterModule, Routes } from '@angular/router';
     FlexLayoutModule,
    
   ],
-  providers: [],
+  providers: [
+     RecurringEventsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
