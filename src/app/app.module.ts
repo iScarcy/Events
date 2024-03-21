@@ -9,6 +9,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MainContentComponent } from './components/main-content/main-content.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { RouterModule, Routes } from '@angular/router';
+
+
 
 @NgModule({
   declarations: [
@@ -22,7 +25,8 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+   
   ],
   providers: [],
   bootstrap: [AppComponent]
