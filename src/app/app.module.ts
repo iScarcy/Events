@@ -11,6 +11,8 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { RouterModule, Routes } from '@angular/router';
 import { RecurringEventsService } from './services/recurring-events.service';
+import { HttpClientModule } from '@angular/common/http';
+ 
 
 
 
@@ -27,7 +29,7 @@ import { RecurringEventsService } from './services/recurring-events.service';
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
-   
+    HttpClientModule
   ],
   providers: [
      RecurringEventsService
