@@ -7,8 +7,9 @@
                 </app-toolbar>
                 <mat-list>
                   <mat-list-item role="listitem">Oggi</mat-list-item>
-                  <mat-list-item role="listitem">Compleanni</mat-list-item>
-                  <mat-list-item role="listitem">Onomastici</mat-list-item>                  
+                  <mat-list-item role="listitem"><a [routerLink]="['/','compleanni']">Compleanni</a></mat-list-item>
+                  <mat-list-item role="listitem"><a [routerLink]="['/','onomastici']"> Onomastici</a></mat-list-item>                  
+                  <mat-list-item role="listitem"><a [routerLink]="['/','eventi']">Tutti</a></mat-list-item> 
                 </mat-list>
     </mat-drawer>
     <mat-drawer-content  class="app-sidenav-content">

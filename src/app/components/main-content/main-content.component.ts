@@ -1,37 +1,34 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { IEvents } from 'src/app/models/interfaces/IEvents';
 import { RecurringEventsService } from 'src/app/services/recurring-events.service';
 
 @Component({
   selector: 'app-main-content',
   templateUrl: './main-content.component.html',
-  styleUrls: ['./main-content.component.scss']
+  styleUrls: ['./main-content.component.scss'],
 })
 export class MainContentComponent implements OnInit {
-  
   events: IEvents[] = [];
+  eventType: string = '';
 
-  constructor(private eventsService:RecurringEventsService){}
- 
+  constructor(
+    private eventsService: RecurringEventsService,
+    private routesParameters: ActivatedRoute
+  ) {}
+
   ngOnInit(): void {
-    this.getEvents();
-  }
-
-  public getEvents(){
-
-    this.eventsService.getAllEvents().subscribe(
-
-      response => {
-       
-        this.events = response;
-      
-      },
-      error => {
-        console.log(error);
+    this.routesParameters.params.subscribe((params) => {
+      this.eventType = params['eventType'];
+      if (this.eventType != null) {
+        this.getEvents(this.eventType);
       }
-
-    );
-
+    });
   }
 
+  public getEvents(eventType: string) {
+    this.eventsService.getEvents(eventType).subscribe((response) => {
+      this.events = response;
+    });
+  }
 }

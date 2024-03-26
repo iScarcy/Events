@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainContentComponent } from './components/main-content/main-content.component';
 
 const routes: Routes = [
+  {path:":eventType", component: MainContentComponent},
   {path:"", component: MainContentComponent}
 ];
 
