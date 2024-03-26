@@ -12,6 +12,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { RouterModule, Routes } from '@angular/router';
 import { RecurringEventsService } from './services/recurring-events.service';
 import { HttpClientModule } from '@angular/common/http';
+import { EventComponent } from './components/main-content/content/event/event.component';
  
 
 
@@ -21,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     MainContentComponent,
     SidenavComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    EventComponent
   ],
   imports: [
     BrowserModule,

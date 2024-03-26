@@ -1,14 +1,1 @@
-<mat-card class="example-card">
-    <mat-card-header>
-      <mat-card-title>Giuseppe Scarcella</mat-card-title>
-      <mat-card-subtitle>Compleaano</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <p>Data di nascita: 22/08/1983</p>
-      <p>Luogo di nascita: Messina</p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
-  </mat-card>
+<app-event *ngFor="let evn of events" [event]="evn"></app-event>
