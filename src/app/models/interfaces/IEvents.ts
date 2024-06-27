@@ -1,5 +1,5 @@
 export interface IEvents{
-    type: string,
-    data: Date,
+    type: number,
+    date: Date,
     description: string
 }

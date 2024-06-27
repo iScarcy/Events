@@ -14,9 +14,9 @@ export class RecurringEventsService {
 
   constructor(private httpEvents: HttpClient) { }
 
-  getEvents(eventsType:string):Observable<Event[]>{
+  getEvents(eventsType:string):Observable<IEvents[]>{
     return this.httpEvents.get<Array<IEvents>>(baseApiUrl+eventsType).pipe(
-      map(events => events.map(event => new Event(event.type, event.data, event.description)))
+      map(events => events.map(event => ({ type:event.type, date: event.date, description: event.description})))
     );
   }
 }
