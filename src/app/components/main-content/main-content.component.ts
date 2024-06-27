@@ -28,7 +28,7 @@ export class MainContentComponent implements OnInit {
 
   public getEvents(eventType: string) {
     this.eventsService.getEvents(eventType).subscribe((response) => {
-      this.events = response;
+      this.events = response.sort((a,b) => a.description.localeCompare(b.description));
     });
   }
 }
