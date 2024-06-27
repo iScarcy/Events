@@ -13,6 +13,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { RecurringEventsService } from './services/recurring-events.service';
 import { HttpClientModule } from '@angular/common/http';
 import { EventComponent } from './components/main-content/content/event/event.component';
+import { StoreModule } from '@ngrx/store';
+import { eventsReducer } from './shared/store/events.reducer';
  
 
 
@@ -31,7 +33,8 @@ import { EventComponent } from './components/main-content/content/event/event.co
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({events:eventsReducer})
   ],
   providers: [
      RecurringEventsService
