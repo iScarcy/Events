@@ -6,8 +6,8 @@ const _eventsReducer = createReducer(
     initialState,
     on(setEvents, (state, action) => {
         return {
-            ...state,
-            events:[{type:0, date: new Date, description:"Saro Farsaperla"}]
+            typeEvent:action.eventType,
+            events:action.events
         }
     })
 )

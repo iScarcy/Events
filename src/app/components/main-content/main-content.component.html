@@ -1,1 +1,4 @@
-<app-event *ngFor="let evn of events" [event]="evn"></app-event>
+<h1>{{(this.events$ | async)?.typeEvent}}</h1>
+
+<app-event *ngFor="let evn of (this.events$ | async)?.events" [event]="evn"></app-event>
+
