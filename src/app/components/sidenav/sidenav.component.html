@@ -9,8 +9,11 @@
                   <mat-list-item role="listitem">Oggi</mat-list-item>
                   <mat-list-item role="listitem"><a [routerLink]="['/','birdays']">Compleanni</a></mat-list-item>
                   <mat-list-item role="listitem"><a [routerLink]="['/','namedays']"> Onomastici</a></mat-list-item>                  
+                  <mat-list-item role="listitem"><a [routerLink]="['/','days']">Date</a></mat-list-item> 
                   <mat-list-item role="listitem"><a [routerLink]="['/','eventi']">Tutti</a></mat-list-item> 
                 </mat-list>
+            
+                
     </mat-drawer>
     <mat-drawer-content  class="app-sidenav-content">
       <app-toolbar (toogleSidenav)="drawer.toggle()">
@@ -18,5 +21,6 @@
       <div class="wrapper">
           <router-outlet></router-outlet>
       </div>
+
     </mat-drawer-content>
   </mat-drawer-container>
