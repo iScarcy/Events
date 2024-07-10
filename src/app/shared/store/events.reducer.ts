@@ -1,11 +1,17 @@
 import { createReducer,on } from "@ngrx/store";
 import { initialState } from "./events.state";
-import { setEvents } from "./events.actions";
+import { loadevents, loadeventssuccess} from "./events.actions";
 
 const _eventsReducer = createReducer(
     initialState,
-    on(setEvents, (state, action) => {
-        console.log(action.eventType) ;
+ 
+    on(loadevents, (state) => {
+        return {
+            ...state
+        }
+    }),
+    on(loadeventssuccess, (state,action)=>{
+        console.log("loadeventssuccess "+action.eventType) ;
         return {
             typeEvent:action.eventType,
             events:action.events

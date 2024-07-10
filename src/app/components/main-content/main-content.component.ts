@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IEvents } from 'src/app/models/interfaces/IEvents';
 import { RecurringEventsService } from 'src/app/services/recurring-events.service';
-import { setEvents } from 'src/app/shared/store/events.actions';
+import { loadevents, loadeventssuccess } from 'src/app/shared/store/events.actions';
 import { IEventsModel } from 'src/app/shared/store/events.model';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
@@ -46,6 +46,7 @@ export class MainContentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+  
     this.routesParameters.params.subscribe((params) => {
       this.eventType = params['eventType'];
       if (this.eventType != null) {
@@ -54,7 +55,7 @@ export class MainContentComponent implements OnInit {
             case "namedays":
             case "birdays": 
                 this.viewCalendar = false;
-                this.getEvents(this.eventType);
+                this.store.dispatch(loadevents({eventType:this.eventType}));
                 break;
             case "days":
               this.viewCalendar = true;
@@ -64,14 +65,14 @@ export class MainContentComponent implements OnInit {
         
       }
     });
-
+     
+   
+    
     this.events$ = this.store.select("events");
 
   }
 
-  public getEvents(eventType: string) {
-    this.eventsService.getEvents(eventType).subscribe((response) => {
-        this.store.dispatch(setEvents({eventType: eventType, events:response}));      
-    });
-  }
+  
 }
+ 
+

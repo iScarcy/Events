@@ -16,7 +16,8 @@ import { EventComponent } from './components/main-content/content/event/event.co
 import { StoreModule } from '@ngrx/store';
 import { eventsReducer } from './shared/store/events.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
- 
+import { EffectsModule, provideEffects } from '@ngrx/effects';
+import { EvenetEffects } from './shared/store/events.effects';
 
 
 
@@ -36,7 +37,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     FlexLayoutModule,
     HttpClientModule,
     StoreModule.forRoot({events:eventsReducer}),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    EffectsModule.forRoot([EvenetEffects])
   ],
   providers: [
      RecurringEventsService
