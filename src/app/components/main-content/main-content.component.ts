@@ -55,7 +55,13 @@ export class MainContentComponent implements OnInit {
             case "namedays":
             case "birdays": 
                 this.viewCalendar = false;
-                this.store.dispatch(loadevents({eventType:this.eventType}));
+               
+                const request:IEventsModel = {
+                  typeEvent : this.eventType,
+                  events:[]
+                }
+                console.log("request:"+request.typeEvent);
+                this.store.dispatch(loadevents( { data: request }));
                 break;
             case "days":
               this.viewCalendar = true;

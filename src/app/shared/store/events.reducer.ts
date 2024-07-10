@@ -5,11 +5,12 @@ import { loadevents, loadeventssuccess} from "./events.actions";
 const _eventsReducer = createReducer(
     initialState,
  
-    on(loadevents, (state) => {
+  /*  on(loadevents, (state,action) => {
         return {
-            ...state
+            ...state,
+            typeEvent:action.eventType
         }
-    }),
+    }),*/
     on(loadeventssuccess, (state,action)=>{
         console.log("loadeventssuccess "+action.eventType) ;
         return {
