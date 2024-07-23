@@ -8,7 +8,6 @@ import { IEventsModel, IStoreModel } from "./events.model";
 
 @Injectable()
 export class EvenetEffects{
-
     
     
     effects$ =  createEffect(()=>
