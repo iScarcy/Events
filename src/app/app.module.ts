@@ -18,6 +18,7 @@ import { eventsReducer } from './shared/store/events.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule, provideEffects } from '@ngrx/effects';
 import { EvenetEffects } from './shared/store/events.effects';
+import { SaintComponent } from './components/dialog/saint/saint.component';
 
 
 
@@ -27,7 +28,8 @@ import { EvenetEffects } from './shared/store/events.effects';
     MainContentComponent,
     SidenavComponent,
     ToolbarComponent,
-    EventComponent
+    EventComponent,
+    SaintComponent
   ],
   imports: [
     BrowserModule,

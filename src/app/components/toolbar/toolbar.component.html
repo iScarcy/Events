@@ -3,5 +3,17 @@
         <mat-icon>menu</mat-icon>
     </button>
     <span>Ricorrenze</span>
-   
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Scegli una voce dal menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item  >
+          <mat-icon>add</mat-icon>
+          <span>Nuovo Santo</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>notifications_on</mat-icon>
+          <span>Nuovo Onomastico</span>
+        </button>
+      </mat-menu>
 </mat-toolbar>

@@ -8,9 +8,9 @@ import { loadevents, loadeventssuccess } from 'src/app/shared/store/events.actio
 import { IEventsModel } from 'src/app/shared/store/events.model';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
-import { MatDatepickerIntl } from '@angular/material/datepicker';
-import { MaterialModule } from 'src/app/shared/material.module';
 import { FormControl, FormGroup } from '@angular/forms';
+import { SaintComponent } from '../dialog/saint/saint.component';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-main-content',
   providers: [
@@ -31,6 +31,8 @@ export class MainContentComponent implements OnInit {
   events: IEvents[] = [];
   eventType: string = '';
   viewCalendar: boolean = false;
+  viewNamedayButtons:boolean = false;
+
   readonly range = new FormGroup({
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
@@ -42,7 +44,8 @@ export class MainContentComponent implements OnInit {
   constructor(
     private eventsService: RecurringEventsService,
     private routesParameters: ActivatedRoute,
-    private store:Store<{events:IEventsModel}>
+    private store:Store<{events:IEventsModel}>,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -55,7 +58,11 @@ export class MainContentComponent implements OnInit {
             case "namedays":
             case "birdays": 
                 this.viewCalendar = false;
-               
+                if(this.eventType === "namedays"){
+                  console.log("viewNamedayButtons");
+                  this.viewNamedayButtons = true;
+                }
+
                 const request:IEventsModel = {
                   typeEvent : this.eventType,
                   events:[]
@@ -65,7 +72,8 @@ export class MainContentComponent implements OnInit {
                 break;
             case "days":
               this.viewCalendar = true;
-                break;
+              this.viewNamedayButtons = false;
+              break;
             
         }
         
@@ -78,6 +86,11 @@ export class MainContentComponent implements OnInit {
 
   }
 
+  openDialogSaint():void{
+    let dialogRef = this.dialog.open(SaintComponent, {
+      width: '450px',
+    });
+  }
   
 }
  
