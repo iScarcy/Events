@@ -12,19 +12,6 @@
       </mat-form-field>
 </div>
 
-<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Scegli una voce dal menu">
-  <mat-icon>more_vert</mat-icon>
-</button>
-<mat-menu #menu="matMenu">
-  <button mat-menu-item (click)="this.openDialogSaint()">
-    <mat-icon>add</mat-icon>
-    <span>Nuovo Santo</span>
-  </button>
-  <button mat-menu-item>
-    <mat-icon>notifications_on</mat-icon>
-    <span>Nuovo Onomastico</span>
-  </button>
-</mat-menu>
  
 <app-event *ngFor="let evn of (this.events$ | async)?.events" [event]="evn"></app-event>
 
