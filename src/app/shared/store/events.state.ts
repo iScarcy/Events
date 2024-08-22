@@ -1,7 +1,6 @@
 import { IEventsModel } from "./events.model";
 
 
-export const initialState:IEventsModel={
-    typeEvent: "",
+export const initialState:IEventsModel={   
     events: []
 }

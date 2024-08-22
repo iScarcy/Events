@@ -5,12 +5,13 @@ import { Observable } from 'rxjs';
 import { IEvents } from 'src/app/models/interfaces/IEvents';
 import { RecurringEventsService } from 'src/app/services/recurring-events.service';
 import { loadevents, loadeventssuccess } from 'src/app/shared/store/events.actions';
-import { IEventsModel } from 'src/app/shared/store/events.model';
+import { IEventsModel, IEventTypeRequestModel } from 'src/app/shared/store/events.model';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
 import { FormControl, FormGroup } from '@angular/forms';
 import { SaintComponent } from '../dialog/saint/saint.component';
 import { MatDialog } from '@angular/material/dialog';
+import { IDaysEvents } from 'src/app/models/interfaces/IDaysEvents';
 @Component({
   selector: 'app-main-content',
   providers: [
@@ -33,6 +34,8 @@ export class MainContentComponent implements OnInit {
   viewCalendar: boolean = false;
   viewNamedayButtons:boolean = false;
 
+  today: Date = new Date();
+
   readonly range = new FormGroup({
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
@@ -52,6 +55,7 @@ export class MainContentComponent implements OnInit {
   
     this.routesParameters.params.subscribe((params) => {
       this.eventType = params['eventType'];
+    
       if (this.eventType != null) {
         switch(this.eventType){
             case "all":
@@ -59,16 +63,15 @@ export class MainContentComponent implements OnInit {
             case "birdays": 
                 this.viewCalendar = false;
                 if(this.eventType === "namedays"){
-                  console.log("viewNamedayButtons");
                   this.viewNamedayButtons = true;
                 }
 
-                const request:IEventsModel = {
-                  typeEvent : this.eventType,
-                  events:[]
-                }
-                console.log("request:"+request.typeEvent);
-                this.store.dispatch(loadevents( { data: request }));
+                var request: IEventTypeRequestModel = {
+                  eventType: this.eventType
+                };
+                
+
+                this.store.dispatch(loadevents({data: request}));
                 break;
             case "days":
               this.viewCalendar = true;
@@ -77,6 +80,8 @@ export class MainContentComponent implements OnInit {
             
         }
         
+      }else{
+        console.log("today?")
       }
     });
      

@@ -1,11 +1,23 @@
+import { IDaysEvents } from "src/app/models/interfaces/IDaysEvents";
 import { IEvents } from "src/app/models/interfaces/IEvents";
 
 export interface IEventsModel{
-    typeEvent:string,
-    events:IEvents[];
+    events:IEvents[]
 }
 
 export interface IStoreModel{
     data: IEventsModel,
     type:string
+}
+
+
+export interface IStoreRequest{
+    type:string
+}
+export interface IEventTypeRequestModel {
+    eventType:string
+}
+
+export interface IStoreRequestModel extends IStoreRequest{
+    data: IEventTypeRequestModel
 }

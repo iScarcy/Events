@@ -12,9 +12,7 @@ const _eventsReducer = createReducer(
         }
     }),*/
     on(loadeventssuccess, (state,action)=>{
-        console.log("loadeventssuccess "+action.eventType) ;
-        return {
-            typeEvent:action.eventType,
+         return {
             events:action.events
         }
     })
