@@ -1,5 +1,11 @@
 
 <h2>{{this.today | date:'yyyy-MM-dd'}}</h2>
- 
-<app-event *ngFor="let evn of (this.events$ | async)?.events" [event]="evn"></app-event>
+<div fxLayout="row wrap" fxLayoutGap="16px grid">
+<app-event 
+  fxFlex="25%"
+  fxFlex.xs="100%"
+  fxFlex.sm="33%"
+ *ngFor="let evn of (this.events$ | async)?.events" [event]="evn">
 
+</app-event>
+</div>

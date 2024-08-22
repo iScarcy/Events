@@ -18,6 +18,7 @@ export class EventComponent {
     {
       case 0: return "Compleanno";
       case 1: return "Onomastico";
+      case 2: return "Anniversario";
       default: return "Error"
     }
   }
