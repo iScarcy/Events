@@ -18,6 +18,10 @@ export interface IEventTypeRequestModel {
     eventType:string
 }
 
-export interface IStoreRequestModel extends IStoreRequest{
+export interface IEventTypeStoreRequestModel extends IStoreRequest{
     data: IEventTypeRequestModel
+}
+
+export interface IDaysEventStoreRequestModel extends IStoreRequest{
+    data: IDaysEvents
 }

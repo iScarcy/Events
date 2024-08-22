@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IEvents } from 'src/app/models/interfaces/IEvents';
 import { RecurringEventsService } from 'src/app/services/recurring-events.service';
-import { loadevents, loadeventssuccess } from 'src/app/shared/store/events.actions';
+import { loadevents, loadeventsByDays, loadeventssuccess } from 'src/app/shared/store/events.actions';
 import { IEventsModel, IEventTypeRequestModel } from 'src/app/shared/store/events.model';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
@@ -77,11 +77,29 @@ export class MainContentComponent implements OnInit {
               this.viewCalendar = true;
               this.viewNamedayButtons = false;
               break;
-            
+            case "today":  
+              this.viewCalendar = false;
+              console.log("today?");
+      
+              var daysRequest: IDaysEvents = {
+                  from: this.today,
+                  to: this.today
+              }
+              
+              this.store.dispatch(loadeventsByDays({data: daysRequest}));
+              break;
         }
         
       }else{
-        console.log("today?")
+        this.viewCalendar = false;
+        console.log("today?");
+
+        var daysRequest: IDaysEvents = {
+            from: this.today,
+            to: this.today
+        }
+        
+        this.store.dispatch(loadeventsByDays({data: daysRequest}));
       }
     });
      
