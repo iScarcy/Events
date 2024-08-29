@@ -19,7 +19,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule, provideEffects } from '@ngrx/effects';
 import { EvenetEffects } from './shared/store/events.effects';
 import { SaintComponent } from './components/dialog/saint/saint.component';
-
+ 
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { SaintComponent } from './components/dialog/saint/saint.component';
     MaterialModule,
     FlexLayoutModule,
     HttpClientModule,
+    FormsModule,
     StoreModule.forRoot({events:eventsReducer}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot([EvenetEffects])

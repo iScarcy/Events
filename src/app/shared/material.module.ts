@@ -9,12 +9,15 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatDialogModule} from '@angular/material/dialog';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatInputModule } from '@angular/material/input';
 @NgModule({
   declarations: [],
   imports: [
     CommonModule
   ],
   exports:[
+    FlexLayoutModule,
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
@@ -23,7 +26,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatCardModule,
     MatDatepickerModule,
     MatFormFieldModule,
-    MatDialogModule   
+    MatDialogModule,
+    MatInputModule   
   ]
 })
 export class MaterialModule { }
