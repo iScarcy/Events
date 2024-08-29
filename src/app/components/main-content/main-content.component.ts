@@ -60,7 +60,7 @@ export class MainContentComponent implements OnInit {
         switch(this.eventType){
             case "all":
             case "namedays":
-            case "birdays": 
+            case "birthdays": 
                 this.viewCalendar = false;
                 if(this.eventType === "namedays"){
                   this.viewNamedayButtons = true;
