@@ -4,20 +4,19 @@ import { Observable, map } from 'rxjs';
 import { IEvents } from '../models/interfaces/IEvents';
 import { baseApiUrl } from '../app.constant';
 import { IDaysEvents } from '../models/interfaces/IDaysEvents';
+import { IChangeEventDate } from '../models/interfaces/IChangeEventDate';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecurringEventsService {
-
   
-
   constructor(private httpEvents: HttpClient) { }
 
   getEvents(eventsType:string):Observable<IEvents[]>{
     console.log("LOAD");
     return this.httpEvents.get<Array<IEvents>>(baseApiUrl+eventsType).pipe(
-      map(events => events.map(event => ({ type:event.type, date: event.date, description: event.description})))
+      map(events => events.map(event => ({codEvent: event.codEvent, type:event.type, date: event.date, description: event.description})))
     );
   }
 
@@ -29,7 +28,11 @@ export class RecurringEventsService {
     }
     
    return this.httpEvents.put<Array<IEvents>>(baseApiUrl+"days", body).pipe(
-      map(events => events.map(event => ({ type:event.type, date: event.date, description: event.description})))
+      map(events => events.map(event => ({codEvent: event.codEvent,  type:event.type, date: event.date, description: event.description})))
     );
+  }
+
+  changeBirthDay(request: IChangeEventDate){
+   return this.httpEvents.patch<IChangeEventDate>(baseApiUrl+"days", request);
   }
 }

@@ -1,8 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { IChangeEventDate } from '../../../../models/interfaces/IChangeEventDate';
 import { IEvents } from '../../../../models/interfaces/IEvents';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
-import { MatDatepickerIntl } from '@angular/material/datepicker';
+import { MatDatepickerInputEvent, MatDatepickerIntl } from '@angular/material/datepicker';
+import { Store } from '@ngrx/store';
+import { IEventsModel } from 'src/app/shared/store/events.model';
+import { changeDateEvent } from 'src/app/shared/store/events.actions';
 
 @Component({
   selector: 'app-event',
@@ -22,19 +26,26 @@ import { MatDatepickerIntl } from '@angular/material/datepicker';
 })
 export class EventComponent implements OnInit {
   
-  dataEvento:string ="ok";
+  constructor( private store:Store<{events:IEventsModel}>){
+    
+  }
   
   ngOnInit(): void {
-    this.dataEvento = "coap";
+
   }
  
   @Input() event:IEvents = {
+    codEvent:"",
     type: 0,
     date: new Date,
     description: ''
   }  ;
 
-
+   changeDateEventRequest : IChangeEventDate = {
+    codEvent: "",
+    dateEvent: new Date,
+    typeEvent: 0
+  }
 
   public getEventType(type:number):string
   {
@@ -45,5 +56,20 @@ export class EventComponent implements OnInit {
       case 2: return "Anniversario";
       default: return "Error"
     }
+  }
+
+
+  public changeDate(event: MatDatepickerInputEvent<Date>):void{
+    console.log(event);
+    console.log(this.event.description);
+    console.log(this.event.codEvent);
+   
+    this.changeDateEventRequest.codEvent = this.event.codEvent;
+    this.changeDateEventRequest.dateEvent = this.event.date;
+    this.changeDateEventRequest.typeEvent = this.event.type
+   
+    
+   // this.store.dispatch(changeDateEvent({data: this.changeDateEventRequest}));
+
   }
 }

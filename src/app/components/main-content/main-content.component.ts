@@ -32,7 +32,7 @@ export class MainContentComponent implements OnInit {
   events: IEvents[] = [];
   eventType: string = '';
   viewCalendar: boolean = false;
-  viewNamedayButtons:boolean = false;
+ 
 
   today: Date = new Date();
 
@@ -62,10 +62,7 @@ export class MainContentComponent implements OnInit {
             case "namedays":
             case "birthdays": 
                 this.viewCalendar = false;
-                if(this.eventType === "namedays"){
-                  this.viewNamedayButtons = true;
-                }
-
+                
                 var request: IEventTypeRequestModel = {
                   eventType: this.eventType
                 };
@@ -75,7 +72,7 @@ export class MainContentComponent implements OnInit {
                 break;
             case "days":
               this.viewCalendar = true;
-              this.viewNamedayButtons = false;
+            
               break;
             case "today":  
               this.viewCalendar = false;

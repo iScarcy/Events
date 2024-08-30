@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { RecurringEventsService } from "src/app/services/recurring-events.service";
-import { LOAD_EVENTS, LOAD_EVENTS_BY_DAYS, loadeventssuccess } from "./events.actions";
+import { CHANGE_EVENT_DATE, changeDateEventSuccess, LOAD_EVENTS, LOAD_EVENTS_BY_DAYS, loadeventssuccess } from "./events.actions";
 import { exhaustMap, map, Observable } from "rxjs";
-import { IDaysEventStoreRequestModel, IEventTypeRequestModel, IEventTypeStoreRequestModel } from "./events.model";
+import { IChangeEventDateRequestModel, IDaysEventStoreRequestModel, IEventTypeRequestModel, IEventTypeStoreRequestModel } from "./events.model";
  
 
 
@@ -34,6 +34,21 @@ export class EvenetEffects{
                 return this.service.getEventsByDays({from: action.data.from, to: action.data.to}).pipe(
                     map((data) => {
                         return loadeventssuccess({events:data})
+                    }) 
+                )
+            })
+
+        )
+    );
+
+    changeDateEvent$ = createEffect(() => 
+        this.action$
+        .pipe(
+            ofType(CHANGE_EVENT_DATE),
+            exhaustMap((action: IChangeEventDateRequestModel) => {
+                return this.service.changeBirthDay({ codEvent: action.data.codEvent, dateEvent: action.data.dateEvent, typeEvent: action.data.typeEvent}).pipe(
+                    map((data) => {
+                        return changeDateEventSuccess()
                     }) 
                 )
             })

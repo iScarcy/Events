@@ -5,11 +5,13 @@
     <mat-card-content>     
     </mat-card-content>
     <mat-card-content>
-        <mat-form-field>
+        
+        <mat-form-field *ngIf="event.type!=1">
             <mat-label>Data {{ this.getEventType(event.type)}}</mat-label>
-            <input matInput [matDatepicker]="picker" [(ngModel)]="event.date"  />            
+            <input matInput [matDatepicker]="picker" [(ngModel)]="event.date"  (dateChange)="changeDate($event)" />            
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>      
+        </mat-form-field>      
+        <span  *ngIf="event.type==1">Data: {{event.date | date: 'dd/MM' }}</span>    
     </mat-card-content>
 </mat-card>

@@ -1,1 +1,1 @@
-export const baseApiUrl:string = "http://ubuntu:5071/api/Event/";
+export const baseApiUrl:string = "http://localhost:5071/api/Event/";
