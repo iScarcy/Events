@@ -5,7 +5,7 @@
   fxFlex="25%"
   fxFlex.xs="100%"
   fxFlex.sm="33%"
- *ngFor="let evn of (this.events$ | async)?.events" [event]="evn">
+ *ngFor="let evn of (this.events$ | async)?.events" [event]="evn" (changeDateEmitter)="changeDateEmitterListener($event)">
 
 </app-event>
 </div>

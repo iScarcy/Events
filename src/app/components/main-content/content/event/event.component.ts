@@ -1,12 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IChangeEventDate } from '../../../../models/interfaces/IChangeEventDate';
 import { IEvents } from '../../../../models/interfaces/IEvents';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
-import { MatDatepickerInputEvent, MatDatepickerIntl } from '@angular/material/datepicker';
-import { Store } from '@ngrx/store';
-import { IEventsModel } from 'src/app/shared/store/events.model';
-import { changeDateEvent } from 'src/app/shared/store/events.actions';
+
 
 @Component({
   selector: 'app-event',
@@ -26,14 +23,16 @@ import { changeDateEvent } from 'src/app/shared/store/events.actions';
 })
 export class EventComponent implements OnInit {
   
-  constructor( private store:Store<{events:IEventsModel}>){
-    
+  constructor(){    
   }
+
+  dateEvent:Date = new Date;
   
   ngOnInit(): void {
-
+      this.dateEvent = this.event.date;
   }
  
+
   @Input() event:IEvents = {
     codEvent:"",
     type: 0,
@@ -41,11 +40,7 @@ export class EventComponent implements OnInit {
     description: ''
   }  ;
 
-   changeDateEventRequest : IChangeEventDate = {
-    codEvent: "",
-    dateEvent: new Date,
-    typeEvent: 0
-  }
+  @Output() public changeDateEmitter:EventEmitter<IChangeEventDate> = new EventEmitter();
 
   public getEventType(type:number):string
   {
@@ -59,17 +54,19 @@ export class EventComponent implements OnInit {
   }
 
 
-  public changeDate(event: MatDatepickerInputEvent<Date>):void{
+  public changeDate(event:IEvents, dataEvent: Date):void{
     console.log(event);
+    console.log(dataEvent);
+   
     console.log(this.event.description);
     console.log(this.event.codEvent);
    
-    this.changeDateEventRequest.codEvent = this.event.codEvent;
-    this.changeDateEventRequest.dateEvent = this.event.date;
-    this.changeDateEventRequest.typeEvent = this.event.type
-   
-    
-   // this.store.dispatch(changeDateEvent({data: this.changeDateEventRequest}));
+    this.changeDateEmitter.emit({
+      codEvent: this.event.codEvent,
+      dateEvent: new Date(dataEvent),
+      typeEvent: this.event.type
+    });
 
+    
   }
 }

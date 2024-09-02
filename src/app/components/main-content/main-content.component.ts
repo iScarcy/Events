@@ -12,6 +12,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { SaintComponent } from '../dialog/saint/saint.component';
 import { MatDialog } from '@angular/material/dialog';
 import { IDaysEvents } from 'src/app/models/interfaces/IDaysEvents';
+import { IChangeEventDate } from 'src/app/models/interfaces/IChangeEventDate';
 @Component({
   selector: 'app-main-content',
   providers: [
@@ -112,6 +113,11 @@ export class MainContentComponent implements OnInit {
     });
   }
   
+  changeDateEmitterListener(event:IChangeEventDate){
+    console.log("apposto");
+    console.log(event);
+  }
+
 }
  
 
