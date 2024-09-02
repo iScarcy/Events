@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IEvents } from 'src/app/models/interfaces/IEvents';
 import { RecurringEventsService } from 'src/app/services/recurring-events.service';
-import { loadevents, loadeventsByDays, loadeventssuccess } from 'src/app/shared/store/events.actions';
+import { changeDateEvent, loadevents, loadeventsByDays, loadeventssuccess } from 'src/app/shared/store/events.actions';
 import { IEventsModel, IEventTypeRequestModel } from 'src/app/shared/store/events.model';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
@@ -116,6 +116,7 @@ export class MainContentComponent implements OnInit {
   changeDateEmitterListener(event:IChangeEventDate){
     console.log("apposto");
     console.log(event);
+    this.store.dispatch(changeDateEvent({data: event}));
   }
 
 }

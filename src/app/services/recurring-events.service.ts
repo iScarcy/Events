@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { IEvents } from '../models/interfaces/IEvents';
-import { baseApiUrl } from '../app.constant';
+import { baseAdressBookApiUrl, baseApiUrl } from '../app.constant';
 import { IDaysEvents } from '../models/interfaces/IDaysEvents';
 import { IChangeEventDate } from '../models/interfaces/IChangeEventDate';
 
@@ -33,6 +33,19 @@ export class RecurringEventsService {
   }
 
   changeBirthDay(request: IChangeEventDate){
-   return this.httpEvents.patch<IChangeEventDate>(baseApiUrl+"days", request);
+
+    let api : string = "";
+
+    switch(request.typeEvent){
+      case 0: api = baseAdressBookApiUrl+"ChangeBirthDay";
+      break;
+    }
+
+    const body = {
+       newBirthDay: request.dateEvent,
+       objID: request.codEvent
+    }
+
+   return this.httpEvents.patch<IChangeEventDate>(api, body);
   }
 }
