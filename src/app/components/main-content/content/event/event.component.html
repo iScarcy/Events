@@ -14,4 +14,8 @@
         </mat-form-field>      
         <span  *ngIf="event.type==1">Data: {{event.date | date: 'dd/MM' }}</span>    
     </mat-card-content>
+    <mat-card-content class="eventFeedback" *ngIf="this.event.eventActionResult != 0 ">
+        <span class="success" *ngIf="this.event.eventActionResult == 1">Aggiornamento avvenuto con successo</span>
+        <span class="error" *ngIf="this.event.eventActionResult == -1">Errore durante l'aggiornamento</span>
+    </mat-card-content>
 </mat-card>

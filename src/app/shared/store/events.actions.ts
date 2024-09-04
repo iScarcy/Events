@@ -3,6 +3,7 @@ import { IEvents } from "src/app/models/interfaces/IEvents";
 import { IDaysEventStoreRequestModel, IEventTypeRequestModel, IEventTypeStoreRequestModel} from "./events.model";
 import { IDaysEvents } from "src/app/models/interfaces/IDaysEvents";
 import { IChangeEventDate } from "src/app/models/interfaces/IChangeEventDate";
+import { EventActionResult } from "src/app/models/enums/eventActionResult";
  
 export const LOAD_EVENTS_SUCCESS='[Event page] load events success';
 export const LOAD_EVENTS='[Event page] load events';
@@ -15,6 +16,6 @@ export const loadeventsByDays=createAction(LOAD_EVENTS_BY_DAYS,  props<{data:IDa
 export const loadeventssuccess=createAction(LOAD_EVENTS_SUCCESS, props<{events:IEvents[]}>())
 
 export const changeDateEvent=createAction(CHANGE_EVENT_DATE, props<{data:IChangeEventDate}>() ) 
-export const changeDateEventSuccess=createAction(CHANGE_EVENT_DATE_SUCCESS) 
+export const changeDateEventSuccess=createAction(CHANGE_EVENT_DATE_SUCCESS, props<{event:IEvents}>()) 
 
  

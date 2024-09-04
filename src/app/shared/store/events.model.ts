@@ -1,9 +1,11 @@
+import { EventActionResult } from "src/app/models/enums/eventActionResult";
 import { IChangeEventDate } from "src/app/models/interfaces/IChangeEventDate";
 import { IDaysEvents } from "src/app/models/interfaces/IDaysEvents";
 import { IEvents } from "src/app/models/interfaces/IEvents";
 
 export interface IEventsModel{
-    events:IEvents[]
+    events:IEvents[] 
+   
 }
 
 export interface IStoreModel{

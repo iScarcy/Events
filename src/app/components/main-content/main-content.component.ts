@@ -114,8 +114,7 @@ export class MainContentComponent implements OnInit {
   }
   
   changeDateEmitterListener(event:IChangeEventDate){
-    console.log("apposto");
-    console.log(event);
+    
     this.store.dispatch(changeDateEvent({data: event}));
   }
 
