@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { SaintComponent } from '../dialog/saint/saint.component';
 import { EventsComponent } from '../dialog/events/events.component';
+import { NamedaysComponent } from '../dialog/namedays/namedays.component';
 
 @Component({
   selector: 'app-toolbar',
@@ -28,6 +29,15 @@ export class ToolbarComponent implements OnInit{
     
     }
     
+    openNamedaysDialog(): void {
+     
+      let config: MatDialogConfig = {
+        panelClass: "dialog-responsive",
+        disableClose: true        
+      }
+      let dialogRef = this.dialog.open(NamedaysComponent, config);
+    
+    }
 
     openEventsDialog(): void {
      
