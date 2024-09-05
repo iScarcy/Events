@@ -9,19 +9,13 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-event',
-  providers: [
-    // The locale would typically be provided on the root module of your application. We do it at
-    // the component level here, due to limitations of our example generation script.
-    { provide: DatePipe }
-  ],
-   
   templateUrl: './event.component.html',
   styleUrls: ['./event.component.scss']
 })
 export class EventComponent implements OnInit {
 
   
-  constructor(private _datepipe: DatePipe){    
+  constructor(){    
   }
 
   dateEvent:Date = new Date;
@@ -61,8 +55,6 @@ export class EventComponent implements OnInit {
       codEvent: this.event.codEvent,
       dateEvent: dataEvent,
       typeEvent: this.event.type
-    });
-    
-    
+    });        
   }
 }

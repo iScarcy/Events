@@ -13,11 +13,13 @@ import { SaintComponent } from '../dialog/saint/saint.component';
 import { MatDialog } from '@angular/material/dialog';
 import { IDaysEvents } from 'src/app/models/interfaces/IDaysEvents';
 import { IChangeEventDate } from 'src/app/models/interfaces/IChangeEventDate';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-main-content',
   providers: [
     // The locale would typically be provided on the root module of your application. We do it at
     // the component level here, due to limitations of our example generation script.
+    { provide: DatePipe },
     { provide: MAT_DATE_LOCALE, useValue: 'it-IT' },
 
     // Moment can be provided globally to your app by adding `provideMomentDateAdapter`
@@ -31,7 +33,8 @@ import { IChangeEventDate } from 'src/app/models/interfaces/IChangeEventDate';
 })
 export class MainContentComponent implements OnInit {
   events: IEvents[] = [];
-  eventType: string = '';
+  eventType: string = "";
+  mainLabel: string = "";
   viewCalendar: boolean = false;
  
 
@@ -49,7 +52,8 @@ export class MainContentComponent implements OnInit {
     private eventsService: RecurringEventsService,
     private routesParameters: ActivatedRoute,
     private store:Store<{events:IEventsModel}>,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private _datepipe: DatePipe
   ) {}
 
   ngOnInit(): void {
@@ -62,6 +66,7 @@ export class MainContentComponent implements OnInit {
             case "all":
             case "namedays":
             case "birthdays": 
+                
                 this.viewCalendar = false;
                 
                 var request: IEventTypeRequestModel = {
@@ -87,11 +92,11 @@ export class MainContentComponent implements OnInit {
               this.store.dispatch(loadeventsByDays({data: daysRequest}));
               break;
         }
-        
+        this.mainLabel = this.getMainLabel(this.eventType);
       }else{
         this.viewCalendar = false;
         console.log("today?");
-
+        this.mainLabel = this.getMainLabel("today");
         var daysRequest: IDaysEvents = {
             from: this.today,
             to: this.today
@@ -105,6 +110,22 @@ export class MainContentComponent implements OnInit {
     
     this.events$ = this.store.select("events");
 
+  }
+
+  getMainLabel(eventType:string):string{
+    switch(this.eventType){
+      case "all":
+        return "Tutti";
+      case "namedays":
+        return "Onomastici";
+      case "birthdays": 
+          return "Compleanni";          
+      case "days":
+        return "Range di date"
+      case "today":  
+        return "Oggi: " + this._datepipe.transform(this.today, 'dd/MM/yyyy');
+      default: return "Oggi: " + this._datepipe.transform(this.today, 'dd/MM/yyyy');
+  }
   }
 
   openDialogSaint():void{

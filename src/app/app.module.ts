@@ -20,7 +20,8 @@ import { EffectsModule, provideEffects } from '@ngrx/effects';
 import { EvenetEffects } from './shared/store/events.effects';
 import { SaintComponent } from './components/dialog/saint/saint.component';
  
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ConfirmComponent } from './components/dialog/confirm/confirm.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { FormsModule } from '@angular/forms';
     SidenavComponent,
     ToolbarComponent,
     EventComponent,
-    SaintComponent
+    SaintComponent,
+    ConfirmComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +41,7 @@ import { FormsModule } from '@angular/forms';
     MaterialModule,
     FlexLayoutModule,
     HttpClientModule,
-    FormsModule,
+    ReactiveFormsModule, FormsModule,
     StoreModule.forRoot({events:eventsReducer}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot([EvenetEffects])

@@ -14,3 +14,13 @@
   .example-spacer {
     flex: 1 1 auto;
   }
+
+.dialog-responsive {
+    width: 40%;
+}
+
+@media only screen and (max-width: 760px) {
+    .dialog-responsive {
+        width: 100%;
+    }
+} 

@@ -2,15 +2,23 @@
 <mat-dialog-content>
     <div class="dialog-container">
         <mat-form-field appearance="fill">
-            <mat-label>Nome del Santo</mat-label>
-            <input matInput required minlength="4" maxlength="15">        
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>Data in cui si festeggia il santo</mat-label>
-            <input matInput [matDatepicker]="picker" >
+            <mat-label>Nome</mat-label>
+            <input matInput [formControl] = "FC_nome" required minlength="4" maxlength="15"/>        
+            <mat-error>{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        <mat-form-field >
+            <mat-label>Data</mat-label>
+            <input matInput [matDatepicker]="picker" [formControl] = "FC_data" required >
             <mat-hint>DD/MM/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
+            <mat-error>{{getErrorDataMessage()}}</mat-error>
         </mat-form-field>
     </div>
 </mat-dialog-content>
+
+<mat-dialog-actions  align="end">
+    <button mat-flat-button color="primary" (click)="openConfirmDialog()">Ok</button>
+    <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>
+ 
