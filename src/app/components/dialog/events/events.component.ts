@@ -1,63 +1,57 @@
-import { Component, OnInit } from '@angular/core';
-import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
-import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { Component } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ConfirmComponent } from '../confirm/confirm.component';
-import { FormControl, Validators } from '@angular/forms';
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
- 
+import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @Component({
-  selector: 'app-saint',
+  selector: 'app-events',
   providers: [
     // The locale would typically be provided on the root module of your application. We do it at
     // the component level here, due to limitations of our example generation script.
    // { provide: DatePipe },
     { provide: MAT_DATE_LOCALE, useValue: 'it-IT' },
-    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {floatLabel: 'always'}},
+
     // Moment can be provided globally to your app by adding `provideMomentDateAdapter`
     // to your app config. We provide it at the component level here, due to limitations
     // of our example generation script.
     provideMomentDateAdapter(undefined, {useUtc: true}),
-  ],   
-  templateUrl: './saint.component.html',
-  styleUrls: ['./saint.component.scss']
+  ], 
+  templateUrl: './events.component.html',
+  styleUrls: ['./events.component.scss']
 })
-export class SaintComponent implements OnInit{
+export class EventsComponent {
   
   constructor(private dialog: MatDialog){
 
   }
 
-  FC_nome = new FormControl('', [
-    Validators.required,
-    Validators.minLength(4),
-    Validators.maxLength(50),
+  FC_eventDescr = new FormControl('', [
+      Validators.required,
+      Validators.minLength(10),
+      Validators.maxLength(40),
   ]);
 
   FC_data = new FormControl('',[
-    Validators.required
+      Validators.required
   ])
-  
-  ngOnInit(): void {
-   
-  }
 
   save(){
-    console.log("nuovo santone");
+    console.log("nuovo eventone");
     this.dialog.closeAll();
   }
-  
+
   getErrorMessage(): string {
-    if (this.FC_nome.hasError('required')) {
-      return 'Il nome è obbligatorio';
+    if (this.FC_eventDescr.hasError('required')) {
+      return 'La descrizione è obbligatoria';
     }
 
-    if (this.FC_nome.hasError('minlength')) {
-      return 'Il nome deve avere almeno 4 caratteri';
+    if (this.FC_eventDescr.hasError('minlength')) {
+      return 'La descrizione deve avere almeno 10 caratteri';
     }
-    if (this.FC_nome.hasError('maxlength')) {
-      return 'Il nome può avere al massimo 15 caratteri';
+    if (this.FC_eventDescr.hasError('maxlength')) {
+      return 'La descrizione può avere al massimo 400 caratteri';
     }
 
     return '';
@@ -76,10 +70,10 @@ export class SaintComponent implements OnInit{
     let config: MatDialogConfig = {
       panelClass: "dialog-responsive",
       disableClose: true,
-      data: {message: "Confermi la creazione di un nuovo santo ?", callback: () => this.save()}    
+      data: {message: "Confermi la creazione di un nuovo evento ?", callback: () => this.save()}    
     }
   
-    if(this.FC_nome.valid && this.FC_data.valid){
+    if(this.FC_eventDescr.valid && this.FC_data.valid){
       let dialogRef = this.dialog.open(ConfirmComponent, config);
     }
           

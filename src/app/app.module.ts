@@ -22,6 +22,7 @@ import { SaintComponent } from './components/dialog/saint/saint.component';
  
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConfirmComponent } from './components/dialog/confirm/confirm.component';
+import { EventsComponent } from './components/dialog/events/events.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { ConfirmComponent } from './components/dialog/confirm/confirm.component'
     ToolbarComponent,
     EventComponent,
     SaintComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    EventsComponent
   ],
   imports: [
     BrowserModule,

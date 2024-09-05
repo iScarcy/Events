@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { SaintComponent } from '../dialog/saint/saint.component';
+import { EventsComponent } from '../dialog/events/events.component';
 
 @Component({
   selector: 'app-toolbar',
@@ -23,12 +24,18 @@ export class ToolbarComponent implements OnInit{
         panelClass: "dialog-responsive",
         disableClose: true        
       }
+      let dialogRef = this.dialog.open(SaintComponent, config);
+    
+    }
+    
 
-      let dialogRef = this.dialog.open(SaintComponent, config)
-      .afterClosed().subscribe(
-        {complete:() => console.log("chiuso")}
-      )
-      
+    openEventsDialog(): void {
+     
+      let config: MatDialogConfig = {
+        panelClass: "dialog-responsive",
+        disableClose: true        
+      }
+      let dialogRef = this.dialog.open(EventsComponent, config);
     
     }
 }

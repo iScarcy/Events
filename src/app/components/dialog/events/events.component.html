@@ -1,9 +1,9 @@
-<h2 mat-dialog-titile>Aggiungi/Modifica Santo</h2>
+<h2 mat-dialog-titile>Aggiungi Evento</h2>
 <mat-dialog-content>
-    <div class="dialog-container ">
+    <div class="dialog-container dialog-responsive">
         <mat-form-field appearance="fill">
-            <mat-label>Nome</mat-label>
-            <input matInput [formControl] = "FC_nome" required minlength="4" maxlength="15"/>        
+            <mat-label>Descrizione evento</mat-label>
+            <input matInput [formControl] = "FC_eventDescr" required minlength="10" maxlength="400"/>        
             <mat-error>{{getErrorMessage()}}</mat-error>
           </mat-form-field>
         <mat-form-field >
@@ -21,4 +21,3 @@
     <button mat-flat-button color="primary" (click)="openConfirmDialog()">Ok</button>
     <button mat-button mat-dialog-close>Cancel</button>
 </mat-dialog-actions>
- 
