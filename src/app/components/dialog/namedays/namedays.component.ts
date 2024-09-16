@@ -26,7 +26,9 @@ export class NamedaysComponent implements OnInit {
     
     this.peopleService.getAdressBook().subscribe({
       next:(data) => {this.namedayData.people = data}
-    })
+    });
   }
+
+  
 
 }

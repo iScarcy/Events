@@ -1,6 +1,6 @@
 import { createReducer,on } from "@ngrx/store";
 import { initialState } from "./events.state";
-import { changeDateEventSuccess, loadevents, loadeventssuccess} from "./events.actions";
+import {changeDateEventSuccess, loadevents, loadeventssuccess} from "./events.actions";
 import { EventActionResult } from "src/app/models/enums/eventActionResult";
 import { IEvents } from "src/app/models/interfaces/IEvents";
 

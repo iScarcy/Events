@@ -34,16 +34,10 @@ export class RecurringEventsService {
     );
   }
 
+  
   changeEventDate(request: IChangeEventDate){
    
-    let api : string = "";
-    
-    switch(request.typeEvent){
-      case 0: api = baseAdressBookApiUrl+"ChangeBirthDay";
-      break;
-      case 2: api = baseApiUrl+"ChangeEventDate";
-      break;
-    }
+    let api : string = baseApiUrl+"ChangeEventDate";    
 
     const body = {
       newDataEvent: request.dateEvent,
@@ -51,5 +45,5 @@ export class RecurringEventsService {
     }
 
    return this.httpEvents.patch<IChangeDateRequest>(api, body);
-  }
+  } 
 }

@@ -5,6 +5,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ConfirmComponent } from '../confirm/confirm.component';
 import { FormControl, Validators } from '@angular/forms';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { SaintsService } from 'src/app/services/saints.service';
  
 
 @Component({
@@ -25,7 +26,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 })
 export class SaintComponent implements OnInit{
   
-  constructor(private dialog: MatDialog){
+  constructor(private dialog: MatDialog, private ss:SaintsService){
 
   }
 
@@ -44,8 +45,10 @@ export class SaintComponent implements OnInit{
   }
 
   save(){
-    console.log("nuovo santone");
-    this.dialog.closeAll();
+    this.ss.addSaint({description: this.FC_nome.value!, date: new Date(this.FC_data.value!)}).subscribe({
+      complete:()=>{this.dialog.closeAll();}
+    })
+    
   }
   
   getErrorMessage(): string {

@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { IPeople } from '../models/interfaces/IPeople';
 import { baseAdressBookApiUrl } from '../app.constant';
+import { IChangeEventDate } from '../models/interfaces/IChangeEventDate';
+import { IChangeDateRequest } from '../models/interfaces/IChangeDataRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -17,4 +19,18 @@ export class AndressbookService {
     );
   }
 
+  
+  changeEventDate(request: IChangeEventDate){
+   
+    let api : string = "";
+    
+    api = baseAdressBookApiUrl+"ChangeBirthDay";
+    
+    const body = {
+      newDataEvent: request.dateEvent,
+       objID: request.codEvent
+    }
+
+   return this.httpClient.patch<IChangeDateRequest>(api, body);
+  }
 }
