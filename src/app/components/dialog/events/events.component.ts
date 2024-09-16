@@ -4,6 +4,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ConfirmComponent } from '../confirm/confirm.component';
 import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { RecurringEventsService } from 'src/app/services/recurring-events.service';
 
 @Component({
   selector: 'app-events',
@@ -23,7 +24,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 })
 export class EventsComponent {
   
-  constructor(private dialog: MatDialog){
+  constructor(private dialog: MatDialog, private eventsService: RecurringEventsService){
 
   }
 
@@ -38,8 +39,9 @@ export class EventsComponent {
   ])
 
   save(){
-    console.log("nuovo eventone");
-    this.dialog.closeAll();
+    this.eventsService.addEvent({eventType: 2, dateEvent: new Date(this.FC_data.value!) , description: this.FC_eventDescr.value!}).subscribe({
+      complete:()=>{this.dialog.closeAll();}
+    })        
   }
 
   getErrorMessage(): string {

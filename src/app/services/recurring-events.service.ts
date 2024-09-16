@@ -8,6 +8,7 @@ import { IChangeEventDate } from '../models/interfaces/IChangeEventDate';
 import { IChangeDateRequest } from '../models/requests/IChangeDataRequest';
 import { EventActionResult } from '../models/enums/eventActionResult';
 import { INewNamedayRequest } from '../models/requests/INewNamedayRequest';
+import { INewEventRequest } from '../models/requests/INewEventRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -53,4 +54,8 @@ export class RecurringEventsService {
      return this.httpEvents.post(baseRecurringEventsApiUrl+"NameDayWasCreated", request);
   }
 
+  addEvent(request:INewEventRequest){
+    
+    return this.httpEvents.post(baseRecurringEventsApiUrl+"EventWasCreated", request);
+ }
 }

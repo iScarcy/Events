@@ -78,8 +78,6 @@ export class NamedaysComponent implements OnInit {
   save(){
     this.eventsService.addNameDay({objID: this.FC_person.value!, idSaint: Number.parseInt(this.FC_saint.value!)}).subscribe({
       complete:()=>{this.dialog.closeAll();}
-    })
-    
-    
+    })        
   }
 }
