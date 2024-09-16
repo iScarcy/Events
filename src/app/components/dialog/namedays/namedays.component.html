@@ -3,17 +3,17 @@
     <div class="dialog-container ">
         <mat-form-field appearance="fill">
             <mat-label>Santo</mat-label>
-            <mat-select [(ngModel)]="this.selectedSaint" name="saint">
+            <mat-select [formControl]="FC_saint" name="saint">
                <mat-option *ngFor="let saint of this.namedayData.saints" [value]="saint.id" >{{saint.description}} ({{saint.date | date: "dd/MM"}})</mat-option>
             </mat-select>   
-           
+            <mat-error>{{getErrorMessage()}}</mat-error>
           </mat-form-field>
         <mat-form-field >
             <mat-label>Persona</mat-label>
-            <mat-select [(ngModel)]="this.selectedPerson" name="person">
+            <mat-select [formControl]="FC_person" name="person">
                <mat-option *ngFor="let person of this.namedayData.people" [value]="person.id" >{{person.nome + " "+ person.cognome}} </mat-option>
             </mat-select> 
-            
+            <mat-error>{{getErrorMessage()}}</mat-error>
         </mat-form-field>
     </div>
 </mat-dialog-content>

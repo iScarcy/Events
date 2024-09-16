@@ -6,6 +6,7 @@ import { AndressbookService } from 'src/app/services/andressbook.service';
 import { SaintsService } from 'src/app/services/saints.service';
 import { ConfirmComponent } from '../confirm/confirm.component';
 import { RecurringEventsService } from 'src/app/services/recurring-events.service';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-namedays',
@@ -16,8 +17,7 @@ import { RecurringEventsService } from 'src/app/services/recurring-events.servic
 export class NamedaysComponent implements OnInit {
  
   namedayData:INamedayData = {saints:[], people:[]}
-  selectedSaint:  string = "";
-  selectedPerson: string = "";;
+ 
  
   constructor(private dialog: MatDialog,
     private saintsService: SaintsService, 
@@ -27,6 +27,27 @@ export class NamedaysComponent implements OnInit {
 
   }
 
+  FC_saint = new FormControl('',[
+    Validators.required
+  ])
+  
+  FC_person = new FormControl('',[
+    Validators.required
+  ])
+  
+
+  getErrorMessage(): string {
+    if (this.FC_saint.hasError('required')) {
+      return 'Il nome del santo è obbligatorio';
+    }
+
+    if (this.FC_person.hasError('required')) {
+      return 'Il nome della persona è obbligatoria';
+    }
+
+     
+    return '';
+  }
 
   
 
@@ -47,15 +68,15 @@ export class NamedaysComponent implements OnInit {
       disableClose: true,
       data: {message: "Confermi la creazione di un nuovo onomastico ?", callback: () => this.save()}    
     }
-    this.dialog.open(ConfirmComponent, config);
-   /* if(this.FC_nome.valid && this.FC_data.valid){
+    
+    if(this.FC_saint.valid && this.FC_person.valid){
       let dialogRef = this.dialog.open(ConfirmComponent, config);
     }
-     */     
+         
   }
 
   save(){
-    this.eventsService.addNameDay({objID: this.selectedPerson, idSaint: Number.parseInt(this.selectedSaint)}).subscribe({
+    this.eventsService.addNameDay({objID: this.FC_person.value!, idSaint: Number.parseInt(this.FC_saint.value!)}).subscribe({
       complete:()=>{this.dialog.closeAll();}
     })
     
