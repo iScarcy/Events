@@ -19,7 +19,7 @@ import { EventActionResult } from 'src/app/models/enums/eventActionResult';
 import { AndressbookService } from 'src/app/services/andressbook.service';
 import { ISaint } from 'src/app/models/interfaces/ISaint';
 import { SaintsService } from 'src/app/services/saints.service';
-import { INewSaintRequest } from 'src/app/models/interfaces/INewSaintRequest';
+
 
 @Injectable()
 export class EvenetEffects {

@@ -2,11 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { IEvents } from '../models/interfaces/IEvents';
-import { baseAdressBookApiUrl, baseApiUrl } from '../app.constant';
+import { baseAdressBookApiUrl, baseApiUrl, baseRecurringEventsApiUrl } from '../app.constant';
 import { IDaysEvents } from '../models/interfaces/IDaysEvents';
 import { IChangeEventDate } from '../models/interfaces/IChangeEventDate';
-import { IChangeDateRequest } from '../models/interfaces/IChangeDataRequest';
+import { IChangeDateRequest } from '../models/requests/IChangeDataRequest';
 import { EventActionResult } from '../models/enums/eventActionResult';
+import { INewNamedayRequest } from '../models/requests/INewNamedayRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -46,4 +47,10 @@ export class RecurringEventsService {
 
    return this.httpEvents.patch<IChangeDateRequest>(api, body);
   } 
+
+  addNameDay(request:INewNamedayRequest){
+    
+     return this.httpEvents.post(baseRecurringEventsApiUrl+"NameDayWasCreated", request);
+  }
+
 }

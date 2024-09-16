@@ -4,7 +4,7 @@ import { map, Observable } from 'rxjs';
 import { IPeople } from '../models/interfaces/IPeople';
 import { baseAdressBookApiUrl } from '../app.constant';
 import { IChangeEventDate } from '../models/interfaces/IChangeEventDate';
-import { IChangeDateRequest } from '../models/interfaces/IChangeDataRequest';
+import { IChangeDateRequest } from '../models/requests/IChangeDataRequest';
 
 @Injectable({
   providedIn: 'root'

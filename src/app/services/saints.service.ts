@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { baseSaintApiUrl } from '../app.constant';
 import { map, Observable, tap } from 'rxjs';
 import { ISaint } from '../models/interfaces/ISaint';
-import { INewSaintRequest } from '../models/interfaces/INewSaintRequest';
+import { INewSaintRequest } from '../models/requests/INewSaintRequest';
 
 @Injectable({
   providedIn: 'root'

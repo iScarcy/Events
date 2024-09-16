@@ -4,9 +4,7 @@ import { IDaysEventStoreRequestModel, IEventTypeRequestModel, IEventTypeStoreReq
 import { IDaysEvents } from "src/app/models/interfaces/IDaysEvents";
 import { IChangeEventDate } from "src/app/models/interfaces/IChangeEventDate";
 import { EventActionResult } from "src/app/models/enums/eventActionResult";
-import { ISaint } from "src/app/models/interfaces/ISaint";
-import { INewSaintRequest } from "src/app/models/interfaces/INewSaintRequest";
- 
+import { ISaint } from "src/app/models/interfaces/ISaint"; 
 export const LOAD_EVENTS_SUCCESS='[Event page] load events success';
 export const LOAD_EVENTS='[Event page] load events';
 export const LOAD_EVENTS_BY_DAYS='[Event page] load events by days';
