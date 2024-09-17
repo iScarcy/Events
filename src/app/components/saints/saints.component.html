@@ -1,0 +1,10 @@
+<h2>Santi</h2>
+<div fxLayout="row wrap" fxLayoutGap="16px grid">
+<ele-saint
+  fxFlex="25%"
+  fxFlex.xs="100%"
+  fxFlex.sm="33%"
+ *ngFor="let snt of (this.saints$ | async)?.saints" [saint]="snt" >
+
+</ele-saint>
+</div>

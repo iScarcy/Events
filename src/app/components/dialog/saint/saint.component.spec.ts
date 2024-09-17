@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SaintComponent } from './saint.component';
+import { SaintDialogComponent } from './saint.component';
 
 describe('SaintComponent', () => {
-  let component: SaintComponent;
-  let fixture: ComponentFixture<SaintComponent>;
+  let component: SaintDialogComponent;
+  let fixture: ComponentFixture<SaintDialogComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SaintComponent]
+      declarations: [SaintDialogComponent]
     });
-    fixture = TestBed.createComponent(SaintComponent);
+    fixture = TestBed.createComponent(SaintDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

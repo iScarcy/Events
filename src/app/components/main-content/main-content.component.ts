@@ -9,11 +9,13 @@ import { IEventsModel, IEventTypeRequestModel } from 'src/app/shared/store/event
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
 import { FormControl, FormGroup } from '@angular/forms';
-import { SaintComponent } from '../dialog/saint/saint.component';
+import { SaintDialogComponent } from '../dialog/saint/saint.component';
 import { MatDialog } from '@angular/material/dialog';
 import { IDaysEvents } from 'src/app/models/interfaces/IDaysEvents';
 import { IChangeEventDate } from 'src/app/models/interfaces/IChangeEventDate';
 import { DatePipe } from '@angular/common';
+import { getRouterInfo } from 'src/app/shared/store/Router/Router.Selector';
+import { AppStateModel } from 'src/app/shared/store/Global/AppState.model';
 @Component({
   selector: 'app-main-content',
   providers: [
@@ -51,14 +53,16 @@ export class MainContentComponent implements OnInit {
   constructor(
     private eventsService: RecurringEventsService,
     private routesParameters: ActivatedRoute,
-    private store:Store<{events:IEventsModel}>,
+    private store:Store<AppStateModel>,
     private dialog: MatDialog,
     private _datepipe: DatePipe
   ) {}
 
   ngOnInit(): void {
+    
   
     this.routesParameters.params.subscribe((params) => {
+     
       this.eventType = params['eventType'];
     
       if (this.eventType != null) {
@@ -129,7 +133,7 @@ export class MainContentComponent implements OnInit {
   }
 
   openDialogSaint():void{
-    let dialogRef = this.dialog.open(SaintComponent, {
+    let dialogRef = this.dialog.open(SaintDialogComponent, {
       width: '450px',
     });
   }

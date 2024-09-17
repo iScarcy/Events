@@ -18,7 +18,7 @@ export class RecurringEventsService {
   constructor(private httpEvents: HttpClient) { }
 
   getEvents(eventsType:string):Observable<IEvents[]>{
-    console.log("LOAD");
+   
     return this.httpEvents.get<Array<IEvents>>(baseApiUrl+eventsType).pipe(
       map(events => events.map(event => ({codEvent: event.codEvent, type:event.type, date: event.date, description: event.description,  eventActionResult:  EventActionResult.None})))
     );

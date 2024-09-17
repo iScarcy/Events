@@ -24,7 +24,7 @@ import { SaintsService } from 'src/app/services/saints.service';
   templateUrl: './saint.component.html',
   styleUrls: ['./saint.component.scss']
 })
-export class SaintComponent implements OnInit{
+export class SaintDialogComponent implements OnInit{
   
   constructor(private dialog: MatDialog, private ss:SaintsService){
 

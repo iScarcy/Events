@@ -1,4 +1,4 @@
-import { createReducer,on } from "@ngrx/store";
+import { ActionReducerMap, createReducer,on } from "@ngrx/store";
 import { initialState } from "./events.state";
 import {changeDateEventSuccess, loadevents, loadeventssuccess} from "./events.actions";
 import { EventActionResult } from "src/app/models/enums/eventActionResult";
@@ -37,4 +37,5 @@ const _eventsReducer = createReducer(
 export function eventsReducer(state: any, action: any) {
     return _eventsReducer(state, action);
   }
-  
+ 
+ 
