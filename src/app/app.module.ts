@@ -9,7 +9,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MainContentComponent } from './components/main-content/main-content.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, RouterState, Routes } from '@angular/router';
 import { RecurringEventsService } from './services/recurring-events.service';
 import { HttpClientModule } from '@angular/common/http';
 import { EventComponent } from './components/main-content/content/event/event.component';
@@ -17,13 +17,15 @@ import { StoreModule } from '@ngrx/store';
 import { eventsReducer } from './shared/store/events.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule, provideEffects } from '@ngrx/effects';
-import { EvenetEffects } from './shared/store/events.effects';
+import { EventEffects } from './shared/store/events.effects';
 import { SaintComponent } from './components/dialog/saint/saint.component';
  
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConfirmComponent } from './components/dialog/confirm/confirm.component';
 import { EventsComponent } from './components/dialog/events/events.component';
 import { NamedaysComponent } from './components/dialog/namedays/namedays.component';
+import { AndressbookService } from './services/andressbook.service';
+import { SaintsService } from './services/saints.service';
 
 
 @NgModule({
@@ -48,10 +50,13 @@ import { NamedaysComponent } from './components/dialog/namedays/namedays.compone
     ReactiveFormsModule, FormsModule,
     StoreModule.forRoot({events:eventsReducer}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
-    EffectsModule.forRoot([EvenetEffects])
+    EffectsModule.forRoot([EventEffects]),
+   // StoreRouterConnectiongModule
   ],
   providers: [
-     RecurringEventsService
+     RecurringEventsService,
+     AndressbookService,
+     SaintsService
   ],
   bootstrap: [AppComponent]
 })

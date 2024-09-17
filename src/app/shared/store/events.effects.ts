@@ -22,7 +22,7 @@ import { SaintsService } from 'src/app/services/saints.service';
 
 
 @Injectable()
-export class EvenetEffects {
+export class EventEffects {
   effects$ = createEffect(() =>
     this.action$.pipe(
       ofType(LOAD_EVENTS),
