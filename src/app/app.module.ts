@@ -26,6 +26,7 @@ import { EventsComponent } from './components/dialog/events/events.component';
 import { NamedaysComponent } from './components/dialog/namedays/namedays.component';
 import { AndressbookService } from './services/andressbook.service';
 import { SaintsService } from './services/saints.service';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { SaintsService } from './services/saints.service';
     StoreModule.forRoot({events:eventsReducer}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot([EventEffects]),
+    StoreRouterConnectingModule.forRoot(),
    // StoreRouterConnectiongModule
   ],
   providers: [
