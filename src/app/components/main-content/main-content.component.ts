@@ -35,7 +35,6 @@ import { AppStateModel } from 'src/app/shared/store/Global/AppState.model';
 })
 export class MainContentComponent implements OnInit {
   events: IEvents[] = [];
-  eventType: string = "";
   mainLabel: string = "";
   viewCalendar: boolean = false;
  
@@ -51,8 +50,6 @@ export class MainContentComponent implements OnInit {
   events$ = new Observable<IEventsModel>();
 
   constructor(
-    private eventsService: RecurringEventsService,
-    private routesParameters: ActivatedRoute,
     private store:Store<AppStateModel>,
     private dialog: MatDialog,
     private _datepipe: DatePipe
@@ -60,13 +57,10 @@ export class MainContentComponent implements OnInit {
 
   ngOnInit(): void {
     
-  
-    this.routesParameters.params.subscribe((params) => {
-     
-      this.eventType = params['eventType'];
+    this.store.select(getRouterInfo).subscribe(url =>{
     
-      if (this.eventType != null) {
-        switch(this.eventType){
+      if (url != null) {
+        switch(url){
             case "all":
             case "namedays":
             case "birthdays": 
@@ -74,7 +68,7 @@ export class MainContentComponent implements OnInit {
                 this.viewCalendar = false;
                 
                 var request: IEventTypeRequestModel = {
-                  eventType: this.eventType
+                  eventType: url
                 };
                 
 
@@ -84,7 +78,7 @@ export class MainContentComponent implements OnInit {
               this.viewCalendar = true;
             
               break;
-            case "today":  
+            case "":  
               this.viewCalendar = false;
               console.log("today?");
       
@@ -96,7 +90,7 @@ export class MainContentComponent implements OnInit {
               this.store.dispatch(loadeventsByDays({data: daysRequest}));
               break;
         }
-        this.mainLabel = this.getMainLabel(this.eventType);
+        this.mainLabel = this.getMainLabel(url);
       }else{
         this.viewCalendar = false;
         console.log("today?");
@@ -108,16 +102,16 @@ export class MainContentComponent implements OnInit {
         
         this.store.dispatch(loadeventsByDays({data: daysRequest}));
       }
-    });
      
-   
+     
+    })
     
     this.events$ = this.store.select("events");
 
   }
 
-  getMainLabel(eventType:string):string{
-    switch(this.eventType){
+  getMainLabel(pageUrl:string):string{
+    switch(pageUrl){
       case "all":
         return "Tutti";
       case "namedays":
@@ -126,8 +120,7 @@ export class MainContentComponent implements OnInit {
           return "Compleanni";          
       case "days":
         return "Range di date"
-      case "today":  
-        return "Oggi: " + this._datepipe.transform(this.today, 'dd/MM/yyyy');
+      
       default: return "Oggi: " + this._datepipe.transform(this.today, 'dd/MM/yyyy');
   }
   }

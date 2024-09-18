@@ -60,9 +60,9 @@ import { AppState } from './shared/store/Global/App.state';
     StoreModule.forRoot(AppState),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot([EventEffects, SaintEffects]),
-   /* StoreRouterConnectingModule.forRoot(
+     StoreRouterConnectingModule.forRoot(
       {serializer: CustomSerializer}
-    )*/
+    ) 
     
   ],
   providers: [
