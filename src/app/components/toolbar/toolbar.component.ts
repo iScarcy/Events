@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { SaintDialogComponent } from '../dialog/saint/saint.component';
+ 
 import { EventsComponent } from '../dialog/events/events.component';
 import { NamedaysComponent } from '../dialog/namedays/namedays.component';
 
@@ -19,15 +19,7 @@ export class ToolbarComponent implements OnInit{
       
     }
 
-    openSaintDialog(): void {
-     
-      let config: MatDialogConfig = {
-        panelClass: "dialog-responsive",
-        disableClose: true        
-      }
-      let dialogRef = this.dialog.open(SaintDialogComponent, config);
-    
-    }
+
     
     openNamedaysDialog(): void {
      
