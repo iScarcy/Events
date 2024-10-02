@@ -125,11 +125,7 @@ export class MainContentComponent implements OnInit {
   }
   }
 
-  openDialogSaint():void{
-    let dialogRef = this.dialog.open(SaintDialogComponent, {
-      width: '450px',
-    });
-  }
+ 
   
   changeDateEmitterListener(event:IChangeEventDate){
     

@@ -4,6 +4,7 @@ import { baseSaintApiUrl } from '../app.constant';
 import { map, Observable, tap } from 'rxjs';
 import { ISaint } from '../models/interfaces/ISaint';
 import { INewSaintRequest } from '../models/requests/INewSaintRequest';
+import { INewSaintStoreRequestModel } from '../shared/store/Saints/saints.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +19,11 @@ export class SaintsService {
     );
   }
 
-  addSaint(request:INewSaintRequest):Observable<ISaint>{
-    
+  addSaint(data:INewSaintRequest):Observable<ISaint>{
+   
     const body = {
-      description: request.description ,
-      date: request.date
+      description: data.description ,
+      date: data.date
     }
 
    return this.httpClient.post<ISaint>(baseSaintApiUrl, body).pipe(

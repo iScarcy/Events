@@ -6,6 +6,11 @@ import { ConfirmComponent } from '../confirm/confirm.component';
 import { FormControl, Validators } from '@angular/forms';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { SaintsService } from 'src/app/services/saints.service';
+import { AppStateModel } from 'src/app/shared/store/Global/AppState.model';
+import { Store } from '@ngrx/store';
+import { newsaint } from 'src/app/shared/store/Saints/saints.actions';
+import { INewSaintRequest } from 'src/app/models/requests/INewSaintRequest';
+import { INewSaintStoreRequestModel } from 'src/app/shared/store/Saints/saints.model';
  
 
 @Component({
@@ -26,7 +31,7 @@ import { SaintsService } from 'src/app/services/saints.service';
 })
 export class SaintDialogComponent implements OnInit{
   
-  constructor(private dialog: MatDialog, private ss:SaintsService){
+  constructor(private dialog: MatDialog,  private store:Store<AppStateModel>){
 
   }
 
@@ -45,10 +50,16 @@ export class SaintDialogComponent implements OnInit{
   }
 
   save(){
-    this.ss.addSaint({description: this.FC_nome.value!, date: new Date(this.FC_data.value!)}).subscribe({
-      complete:()=>{this.dialog.closeAll();}
-    })
-    
+
+
+    var request: INewSaintRequest = {
+      description: this.FC_nome.value!, 
+      date: new Date(this.FC_data.value!)
+    }
+   
+    this.store.dispatch(newsaint({data:request}));
+
+    this.dialog.closeAll();
   }
   
   getErrorMessage(): string {
