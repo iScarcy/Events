@@ -31,7 +31,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatDialogModule,
     MatInputModule , 
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule   
+    
   ]
 })
 export class MaterialModule { }

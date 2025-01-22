@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -29,7 +29,8 @@ import { AppStateModel } from 'src/app/shared/store/Global/AppState.model';
     // of our example generation script.
     provideMomentDateAdapter(undefined, {useUtc: true}),
   ],
-    
+  
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './main-content.component.html',
   styleUrls: ['./main-content.component.scss'],
 })
@@ -57,8 +58,10 @@ export class MainContentComponent implements OnInit {
 
   ngOnInit(): void {
     
+   // const selected = model<Date | null>(null);
+
     this.store.select(getRouterInfo).subscribe(url =>{
-    
+       
       if (url != null) {
         switch(url){
             case "all":
@@ -76,9 +79,15 @@ export class MainContentComponent implements OnInit {
                 break;
             case "days":
               this.viewCalendar = true;
+              var daysRequest: IDaysEvents = {
+                from: this.today,
+                to: this.today
+            }
             
+            this.store.dispatch(loadeventsByDays({data: daysRequest}));
               break;
             case "":  
+            case "today": 
               this.viewCalendar = false;
               console.log("today?");
       
@@ -110,26 +119,48 @@ export class MainContentComponent implements OnInit {
 
   }
 
-  getMainLabel(pageUrl:string):string{
-    switch(pageUrl){
-      case "all":
-        return "Tutti";
-      case "namedays":
-        return "Onomastici";
-      case "birthdays": 
-          return "Compleanni";          
-      case "days":
-        return "Range di date"
-      
-      default: return "Oggi: " + this._datepipe.transform(this.today, 'dd/MM/yyyy');
+    getMainLabel(pageUrl:string):string{
+     
+      switch(pageUrl){
+        case "all":
+          return "Tutti";
+        case "namedays":
+          return "Onomastici";
+        case "birthdays": 
+            return "Compleanni";          
+        case "days":
+          return "Range di date";
+        
+        default: return "Oggi: " + this._datepipe.transform(this.today, 'dd/MM/yyyy');
+    }    
   }
-  }
-
- 
   
   changeDateEmitterListener(event:IChangeEventDate){
     
     this.store.dispatch(changeDateEvent({data: event}));
+  }
+
+  public dateRangeChange(dateRangeStart: HTMLInputElement, dateRangeEnd: HTMLInputElement) {
+    const dateStart:string   = dateRangeStart.value;
+    const dateEnd : string   = dateRangeEnd.value;
+    console.log(dateStart);
+    console.log(dateEnd);
+ 
+    let temp = dateStart.split('/').map(Number);
+    
+    let dateFrom = new Date(Date.UTC(temp[2], temp[1] - 1, temp[0]));
+
+    temp = dateEnd.split('/').map(Number);
+    
+    let dataTo = new Date(Date.UTC(temp[2], temp[1] - 1, temp[0]));
+
+
+    var daysRequest: IDaysEvents = {
+      from: dateFrom,
+      to: dataTo
+    }
+    
+    this.store.dispatch(loadeventsByDays({data: daysRequest}));
   }
 
 }

@@ -1,11 +1,25 @@
 
 <h2>{{this.mainLabel}}</h2>
+<div *ngIf="this.viewCalendar">
+  <mat-form-field>
+    <mat-label>Inserisci un range di date</mat-label>
+    <mat-date-range-input [rangePicker]="picker" >
+      <input matStartDate placeholder="Data iniziale" #dateRangeStart>
+      <input matEndDate placeholder="Data finale" #dateRangeEnd
+      (dateChange)="this.dateRangeChange(dateRangeStart, dateRangeEnd)">
+    </mat-date-range-input>
+    <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </mat-form-field>
+  
+</div>
 <div fxLayout="row wrap" fxLayoutGap="16px grid">
-<app-event 
-  fxFlex="25%"
-  fxFlex.xs="100%"
-  fxFlex.sm="33%"
- *ngFor="let evn of (this.events$ | async)?.events" [event]="evn" (changeDateEmitter)="changeDateEmitterListener($event)">
+  <app-event 
+      fxFlex="25%"
+      fxFlex.xs="100%"
+      fxFlex.sm="33%"
+    *ngFor="let evn of (this.events$ | async)?.events" [event]="evn" (changeDateEmitter)="changeDateEmitterListener($event)">
 
-</app-event>
+  </app-event>
 </div>

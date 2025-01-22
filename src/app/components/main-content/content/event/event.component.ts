@@ -57,4 +57,6 @@ export class EventComponent implements OnInit {
       typeEvent: this.event.type
     });        
   }
+
+  
 }
