@@ -3,6 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
  
 import { EventsComponent } from '../dialog/events/events.component';
 import { NamedaysComponent } from '../dialog/namedays/namedays.component';
+import { saintManagment } from 'src/app/app.constant';
 
 @Component({
   selector: 'app-toolbar',
@@ -14,6 +15,8 @@ export class ToolbarComponent implements OnInit{
     @Output() toogleSidenav = new EventEmitter<void>();
 
     constructor(private dialog: MatDialog){}
+
+    saintManagmentUrl: string = saintManagment; 
 
     ngOnInit(): void {
       

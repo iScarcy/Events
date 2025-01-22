@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core"
 import { Actions, createEffect, ofType } from "@ngrx/effects"
-import { LOAD_SAINTS, loadsaintssuccess, NEW_SAINT, newsaintssuccess } from "./saints.actions";
-import { exhaustMap, map } from "rxjs";
+import { LOAD_SAINTS, loadsaintfail, loadsaintssuccess, NEW_SAINT, newsaintssuccess } from "./saints.actions";
+import { catchError, exhaustMap, map, of } from "rxjs";
 import { SaintsService } from "src/app/services/saints.service";
 import { INewSaintStoreRequestModel } from "./saints.model";
  
@@ -19,7 +19,8 @@ export class SaintEffects{
                 return this.saintsService.getSaints().pipe(
                     map((data) => {
                         return loadsaintssuccess({saints:data})
-                    })
+                    }),
+                    catchError((_error)=>of(loadsaintfail({errormessage:_error.message})))
                 )
             })
         )

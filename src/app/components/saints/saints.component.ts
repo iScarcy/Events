@@ -6,6 +6,7 @@ import { AppStateModel } from 'src/app/shared/store/Global/AppState.model';
 import { loadsaints } from 'src/app/shared/store/Saints/saints.actions';
 import { ISaintsModel } from 'src/app/shared/store/Saints/saints.model';
 import { SaintDialogComponent } from '../dialog/saint/saint.component';
+import { gestsaintslist } from 'src/app/shared/store/Saints/saints.selectors';
 
 @Component({
   selector: 'app-saints',
@@ -22,8 +23,9 @@ export class SaintsComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(loadsaints());
-
-    this.saints$ = this.store.select("saints");
+   
+   this.saints$ = this.store.select("saints");
+   //this.saints$ = this.store.select(gestsaintslist);
   }
 
   openSaintDialog(): void {

@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { loadsaintssuccess, newsaintssuccess } from "./saints.actions";
+import { loadsaintfail, loadsaintssuccess, newsaintssuccess } from "./saints.actions";
 import { initialState } from "./saints.state";
  
 
@@ -9,15 +9,23 @@ const _saintsReducer = createReducer(
     
     on(loadsaintssuccess, (state,action)=>{
          return {
-            saints:action.saints
+            saints:action.saints,
+            errormessage:""
         }
     }),
+    on(loadsaintfail, (state,action)=>{
+        return {
+           saints:[],
+           errormessage:action.errormessage
+       }
+   }),
     on(newsaintssuccess, (state, action)=>{
         
         let newSaints = [...state.saints];
         newSaints.push(action.saint);
         return {
-           saints: newSaints
+           saints: newSaints,
+           errormessage:""
        }
    }),
     

@@ -3,6 +3,7 @@ import { INewSaintRequest } from "src/app/models/requests/INewSaintRequest";
 
 export interface ISaintsModel{
     saints: ISaint[]
+    errormessage:string
 }
 
 export interface IStoreModel{
