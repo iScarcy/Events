@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
+ 
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ConfirmComponent } from '../confirm/confirm.component';
@@ -12,19 +12,14 @@ import { newsaint } from 'src/app/shared/store/Saints/saints.actions';
 import { INewSaintRequest } from 'src/app/models/requests/INewSaintRequest';
 import { INewSaintStoreRequestModel } from 'src/app/shared/store/Saints/saints.model';
  
-
 @Component({
   selector: 'app-saint',
   providers: [
     // The locale would typically be provided on the root module of your application. We do it at
     // the component level here, due to limitations of our example generation script.
    // { provide: DatePipe },
-    { provide: MAT_DATE_LOCALE, useValue: 'it-IT' },
-    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {floatLabel: 'always'}},
-    // Moment can be provided globally to your app by adding `provideMomentDateAdapter`
-    // to your app config. We provide it at the component level here, due to limitations
-    // of our example generation script.
-    provideMomentDateAdapter(undefined, {useUtc: true}),
+  //  { provide: MAT_DATE_LOCALE, useValue: 'it-IT' },
+     
   ],   
   templateUrl: './saint.component.html',
   styleUrls: ['./saint.component.scss']

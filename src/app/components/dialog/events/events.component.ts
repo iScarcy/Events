@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ConfirmComponent } from '../confirm/confirm.component';
-import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
+
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { RecurringEventsService } from 'src/app/services/recurring-events.service';
 
@@ -17,7 +17,7 @@ import { RecurringEventsService } from 'src/app/services/recurring-events.servic
     // Moment can be provided globally to your app by adding `provideMomentDateAdapter`
     // to your app config. We provide it at the component level here, due to limitations
     // of our example generation script.
-    provideMomentDateAdapter(undefined, {useUtc: true}),
+    
   ], 
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.scss']

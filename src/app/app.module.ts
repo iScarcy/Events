@@ -34,6 +34,13 @@ import { SaintComponent } from './components/saints/saint/saint.component';
 import { SaintEffects } from './shared/store/Saints/saints.effects';
 import { AppState } from './shared/store/Global/App.state';
 
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+
+import {
+  MomentDateAdapter,
+  MAT_MOMENT_DATE_FORMATS,
+  MAT_MOMENT_DATE_ADAPTER_OPTIONS
+} from '@angular/material-moment-adapter';
 
 @NgModule({
   declarations: [
@@ -66,7 +73,23 @@ import { AppState } from './shared/store/Global/App.state';
     
   ],
   providers: [
-    
+     { provide: MAT_DATE_LOCALE, useValue: 'it-IT' },
+
+  {
+    provide: DateAdapter,
+    useClass: MomentDateAdapter,
+    deps: [MAT_DATE_LOCALE]
+  },
+
+  {
+    provide: MAT_DATE_FORMATS,
+    useValue: MAT_MOMENT_DATE_FORMATS
+  },
+
+  {
+    provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+    useValue: { useUtc: true }
+  }
   ],
   bootstrap: [AppComponent]
 })

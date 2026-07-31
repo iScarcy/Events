@@ -7,7 +7,7 @@ import { RecurringEventsService } from 'src/app/services/recurring-events.servic
 import { changeDateEvent, loadevents, loadeventsByDays, loadeventssuccess } from 'src/app/shared/store/events.actions';
 import { IEventsModel, IEventTypeRequestModel } from 'src/app/shared/store/events.model';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
-import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
+
 import { FormControl, FormGroup } from '@angular/forms';
 import { SaintDialogComponent } from '../dialog/saint/saint.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -24,10 +24,6 @@ import { AppStateModel } from 'src/app/shared/store/Global/AppState.model';
     { provide: DatePipe },
     { provide: MAT_DATE_LOCALE, useValue: 'it-IT' },
 
-    // Moment can be provided globally to your app by adding `provideMomentDateAdapter`
-    // to your app config. We provide it at the component level here, due to limitations
-    // of our example generation script.
-    provideMomentDateAdapter(undefined, {useUtc: true}),
   ],
   
   changeDetection: ChangeDetectionStrategy.OnPush,
