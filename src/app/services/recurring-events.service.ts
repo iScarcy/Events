@@ -9,6 +9,7 @@ import { IChangeDateRequest } from '../models/requests/IChangeDataRequest';
 import { EventActionResult } from '../models/enums/eventActionResult';
 import { INewNamedayRequest } from '../models/requests/INewNamedayRequest';
 import { INewEventRequest } from '../models/requests/INewEventRequest';
+import { IEventsDto } from '../models/interfaces/IEventsDto';
 
 @Injectable({
   providedIn: 'root'
@@ -17,10 +18,12 @@ export class RecurringEventsService {
   
   constructor(private httpEvents: HttpClient) { }
 
+  
+
   getEvents(eventsType:string):Observable<IEvents[]>{
-   
-    return this.httpEvents.get<Array<IEvents>>(baseApiUrl+eventsType).pipe(
-      map(events => events.map(event => ({codEvent: event.codEvent, type:event.type, date: event.date, description: event.description,  eventActionResult:  EventActionResult.None})))
+    eventsType = "recurring";
+    return this.httpEvents.get<IEventsDto[]>(baseApiUrl+eventsType).pipe(
+      map(events => events.map(event => ({codEvent: event.eventID, type:event.eventType, date: event.dateEvent, description: event.description, eventActionResult: EventActionResult.None})))
     );
   }
 
@@ -31,8 +34,8 @@ export class RecurringEventsService {
       to: request.to
     }
     
-   return this.httpEvents.put<Array<IEvents>>(baseApiUrl+"days", body).pipe(
-      map(events => events.map(event => ({codEvent: event.codEvent,  type:event.type, date: event.date, description: event.description,  eventActionResult:  EventActionResult.None})))
+   return this.httpEvents.put<Array<IEventsDto>>(baseApiUrl+"days", body).pipe(
+     map(events => events.map(event => ({codEvent: event.eventID, type:event.eventType, date: event.dateEvent, description: event.description, eventActionResult: EventActionResult.None})))
     );
   }
 
