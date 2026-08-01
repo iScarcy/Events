@@ -28,9 +28,10 @@ export class EventComponent implements OnInit {
 
   @Input() event:IEvents = {
     codEvent:"",
-    type: 0,
+    type: "",
     date: new Date,
     description: '',
+    typeID: 0,
     eventActionResult : EventActionResult.None
   }  ;
 

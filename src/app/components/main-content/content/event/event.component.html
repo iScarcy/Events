@@ -6,13 +6,13 @@
     </mat-card-content>
     <mat-card-content>
         
-        <mat-form-field *ngIf="event.type!=1">
-            <mat-label>Data {{ this.getEventType(event.type)}}</mat-label>
+        <mat-form-field *ngIf="event.typeID!=1">
+            <mat-label>Data {{ event.type}}</mat-label>
             <input matInput [matDatepicker]="picker" [(ngModel)]="this.dateEvent"  (dateChange)="changeDate(event, $event.value)" />            
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>      
-        <span  *ngIf="event.type==1">Data: {{event.date | date: 'dd/MM' }}</span>    
+        <span  *ngIf="event.typeID==1">Data: {{event.date | date: 'dd/MM' }}</span>    
     </mat-card-content>
     <mat-card-content class="eventFeedback" *ngIf="this.event.eventActionResult != 0 ">
         <span class="success" *ngIf="this.event.eventActionResult == 1">Aggiornamento avvenuto con successo</span>

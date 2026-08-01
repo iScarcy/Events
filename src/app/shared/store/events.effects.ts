@@ -51,7 +51,7 @@ export class EventEffects {
     )
   );
    
- 
+ /*
   changeDateEvent$ = createEffect(() =>
     this.action$.pipe(
       ofType(CHANGE_EVENT_DATE),
@@ -108,7 +108,7 @@ export class EventEffects {
       })
     )
   );
-
+*/
   constructor(
     private action$: Actions,
     private eventService: RecurringEventsService,

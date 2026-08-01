@@ -23,7 +23,7 @@ export class RecurringEventsService {
   getEvents(eventsType:string):Observable<IEvents[]>{
     eventsType = "recurring";
     return this.httpEvents.get<IEventsDto[]>(baseApiUrl+eventsType).pipe(
-      map(events => events.map(event => ({codEvent: event.eventID, type:event.eventType, date: event.dateEvent, description: event.description, eventActionResult: EventActionResult.None})))
+      map(events => events.map(event => ({codEvent: event.eventID, type:event.eventType, date: event.dateEvent, description: event.description, typeID: event.eventTypeID, eventActionResult: EventActionResult.None})))
     );
   }
 
@@ -35,7 +35,7 @@ export class RecurringEventsService {
     }
     
    return this.httpEvents.put<Array<IEventsDto>>(baseApiUrl+"days", body).pipe(
-     map(events => events.map(event => ({codEvent: event.eventID, type:event.eventType, date: event.dateEvent, description: event.description, eventActionResult: EventActionResult.None})))
+     map(events => events.map(event => ({codEvent: event.eventID, type:event.eventType, date: event.dateEvent, description: event.description, typeID: event.eventTypeID, eventActionResult: EventActionResult.None})))
     );
   }
 
