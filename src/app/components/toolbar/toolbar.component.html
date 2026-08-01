@@ -3,18 +3,14 @@
         <mat-icon>menu</mat-icon>
     </button>
      
-    <button mat-button color="secondary">
-      <a href="{{this.saintManagmentUrl}}" target="_blank"> Santi</a>
-    </button>
+    
     <span class="example-spacer"></span>
+     
     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Scegli una voce dal menu">
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="this.openNamedaysDialog()">
-          <mat-icon>notifications_on</mat-icon>
-          <span>Nuovo Onomastico</span>
-        </button>
+       
         <button mat-menu-item (click)="this.openEventsDialog()">
           <mat-icon>event</mat-icon>
           <span>Nuovo Evento</span>

@@ -3,5 +3,6 @@ export interface IEventsDto{
     dateEvent: Date,
     description: string,
     eventTypeID : number,
-    eventType : string
+    eventType : string,
+    entityTypeID : number
 }

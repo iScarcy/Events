@@ -9,7 +9,6 @@ import { IEventsModel, IEventTypeRequestModel } from 'src/app/shared/store/event
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 
 import { FormControl, FormGroup } from '@angular/forms';
-import { SaintDialogComponent } from '../dialog/saint/saint.component';
 import { MatDialog } from '@angular/material/dialog';
 import { IDaysEvents } from 'src/app/models/interfaces/IDaysEvents';
 import { IChangeEventDate } from 'src/app/models/interfaces/IChangeEventDate';

@@ -19,6 +19,7 @@ const _eventsReducer = createReducer(
             date: action.event.date,
             description: newEvents[index].description,
             typeID: newEvents[index].typeID,
+            entityTypeID: newEvents[index].entityTypeID,
             eventActionResult : action.event.eventActionResult
         }
        

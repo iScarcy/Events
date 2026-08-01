@@ -17,21 +17,16 @@ import { provideStore, StoreModule } from '@ngrx/store';
 import { eventsReducer } from './shared/store/events.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule, provideEffects } from '@ngrx/effects';
-import { EventEffects } from './shared/store/events.effects';
-import { SaintDialogComponent } from './components/dialog/saint/saint.component';
+import { EventEffects } from './shared/store/events.effects'; 
  
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConfirmComponent } from './components/dialog/confirm/confirm.component';
-import { EventsComponent } from './components/dialog/events/events.component';
-import { NamedaysComponent } from './components/dialog/namedays/namedays.component';
+import { EventsComponent } from './components/dialog/events/events.component'; 
 import { AndressbookService } from './services/andressbook.service';
-import { SaintsService } from './services/saints.service';
+ 
 import { provideRouterStore, routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { CustomSerializer } from './shared/store/Router/CustomSerializer';
-import { SaintsComponent } from './components/saints/saints.component';
-import { saintsReducer } from './shared/store/Saints/saints.reducer';
-import { SaintComponent } from './components/saints/saint/saint.component';
-import { SaintEffects } from './shared/store/Saints/saints.effects';
+ 
 import { AppState } from './shared/store/Global/App.state';
 
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -49,12 +44,10 @@ import {
     SidenavComponent,
     ToolbarComponent,
     EventComponent,
-    SaintDialogComponent,
+   
     ConfirmComponent,
     EventsComponent,
-    NamedaysComponent,
-    SaintsComponent,
-    SaintComponent
+ 
   ],
   imports: [
     BrowserModule,
@@ -66,7 +59,7 @@ import {
     ReactiveFormsModule, FormsModule,
     StoreModule.forRoot(AppState),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
-    EffectsModule.forRoot([EventEffects, SaintEffects]),
+    EffectsModule.forRoot([EventEffects]),
      StoreRouterConnectingModule.forRoot(
       {serializer: CustomSerializer}
     ) 

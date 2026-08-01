@@ -32,6 +32,7 @@ export class EventComponent implements OnInit {
     date: new Date,
     description: '',
     typeID: 0,
+    entityTypeID	: 0,
     eventActionResult : EventActionResult.None
   }  ;
 

@@ -6,5 +6,6 @@ export interface IEvents{
     date: Date,
     description: string,
     typeID: number,
+    entityTypeID : number,
     eventActionResult : EventActionResult
 }
